@@ -26,7 +26,7 @@ SET time_zone = "+00:00";
 --
 -- Estructura de tabla para la tabla `activity`
 --
-
+DROP TABLE IF EXISTS 'activity'
 CREATE TABLE `activity` (
   `id_activity` int NOT NULL,
   `name` varchar(50) NOT NULL,
@@ -57,7 +57,7 @@ INSERT INTO `activity` (`id_activity`, `name`, `description`, `activity_day`, `d
 --
 -- Estructura de tabla para la tabla `assessment`
 --
-
+DROP TABLE IF EXISTS 'assessment'
 CREATE TABLE `assessment` (
   `id_assessment` int NOT NULL,
   `id_reservation` int NOT NULL,
@@ -88,7 +88,7 @@ INSERT INTO `assessment` (`id_assessment`, `id_reservation`, `punctuation`, `com
 --
 -- Estructura de tabla para la tabla `reservation`
 --
-
+DROP TABLE IF EXISTS 'reservation'
 CREATE TABLE `reservation` (
   `id_reservation` int NOT NULL,
   `id_user` int NOT NULL,
@@ -119,7 +119,7 @@ INSERT INTO `reservation` (`id_reservation`, `id_user`, `id_activity`, `reservat
 --
 -- Estructura de tabla para la tabla `user`
 --
-
+DROP TABLE IF EXISTS 'user'
 CREATE TABLE `user` (
   `id_user` int NOT NULL,
   `name` varchar(50) NOT NULL,
