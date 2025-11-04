@@ -3,12 +3,12 @@ require_once("funcionesBD.php");
 $conexion = obtenerConexion();
 
 // Recuperar parámetros
-$nombre = $_POST['txtNombre'];
+$name = $_POST['txtNombre'];
 $email = $_POST['txtEmail'];
-$fecha = $_POST['txtFecha'];
-$edad = $_POST['txtEdad'];
+$registration_date = $_POST['txtFecha'];
+$age = $_POST['txtEdad'];
 $vip = $_POST['txtVip'];
-$observacion = $_POST['txtObservacion'];
+$observation = $_POST['txtObservacion'];
 
 
 
@@ -17,7 +17,7 @@ $observacion = $_POST['txtObservacion'];
 
 // Definir insert
 $sql = "INSERT INTO user(`id_user`, `name`, `email`, `registration_date`, `age`, `vip`, `observation`) 
-        VALUES (NULL, '" . $nombre . "', '" . $email . "', '" . $fecha . "', " . $edad . ", " . $vip . ", '" . $observacion . "');";
+        VALUES (NULL, '" . $name . "', '" . $email . "', '" . $registration_date . "', " . $age . ", " . $vip . ", '" . $observation . "');";
 //CUIDADO, EL NOMBRE DE LAS COLUMNAS NO SON LOS MISMOS QUE DE LOS txt
 
 // Ejecutar consulta
