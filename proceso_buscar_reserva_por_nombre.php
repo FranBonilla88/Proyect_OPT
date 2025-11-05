@@ -17,7 +17,7 @@ $resultadoActividades = mysqli_query($conexion, $sqlActividades);
 if (mysqli_num_rows($resultadoUsuarios) > 0 && mysqli_num_rows($resultadoActividades) > 0) {    // Mostrar tabla de datos, hay datos
     $mensaje = "<h2 class='text-center'></h2>";
     $mensaje .= "<table class='table table-striped'>";
-    $mensaje .= "<thead><tr><th>RESERVA</th><th>ID RESERVA</th><th>NOMBRE RESERVA</th><th>ID USUARIO</th><th>ID ACTIVIDAD</th><th>FECHA RESERVA</th><th>IS ACTIVE</th></tr></thead>";
+    $mensaje .= "<thead><tr><th>ID</th><th>Nombre</th><th>ID Usuario</th><th>ID Actividad</th><th>Fecha Reserva</th><th>Esta Activa</th></tr></thead>";
     $mensaje .= "<tbody>";
 
 
@@ -33,7 +33,7 @@ if (mysqli_num_rows($resultadoUsuarios) > 0 && mysqli_num_rows($resultadoActivid
         $mensaje .= "<td><form action='proceso_borrar_reserva.php' method='post'>";
         // input hidden para enviar idReserva a borrar
         $id_reserva = $fila['id_reservation'];
-        $mensaje .= "<input type='hidden' name='idcomponente' value='$id_reserva' />";
+        $mensaje .= "<input type='hidden' name='id_reservation' value='$id_reserva' />";
         $mensaje .= "<button type='submit' name='btnBorrar' class='btn btn-primary'><i class='bi bi-trash'></i></button> </form> </td>";
 
         $mensaje .= "</tr>";
