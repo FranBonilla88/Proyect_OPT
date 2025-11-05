@@ -7,10 +7,10 @@ include_once("cabecera.html");
         <form class="form-horizontal" action="proceso_buscar_componente.php" name="frmBuscarcomponente" id="frmBuscarcomponente" method="get">
             <fieldset>
                 <!-- Form Name -->
-                <legend>Buscar una reserva por Id de la reserva</legend>
+                <legend>Buscar una reserva por Nombre</legend>
                 <!-- Text input-->
                 <div class="form-group">
-                    <label class="col-xs-4 control-label" for="id_reservation">Id de la reserva</label>
+                    <label class="col-xs-4 control-label" for="">Nombre de la Reserva</label>
                     <div class="col-xs-4">
                         <input id="id_reservation" name="id_reservation" placeholder="Id de la reserva" class="form-control input-md" type="text">
                     </div>
