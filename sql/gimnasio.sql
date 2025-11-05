@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: db
--- Tiempo de generación: 05-11-2025 a las 13:07:08
+-- Tiempo de generación: 05-11-2025 a las 16:31:16
 -- Versión del servidor: 8.0.43
 -- Versión de PHP: 8.2.27
 
@@ -104,16 +104,16 @@ CREATE TABLE `reservation` (
 --
 
 INSERT INTO `reservation` (`id_reservation`, `name`, `id_user`, `id_activity`, `reservation_date`, `is_active`, `comment`) VALUES
-(1, '', 1, 1, '2025-01-09 09:00:00', 1, 'Primera clase de yoga del año.'),
-(2, '', 2, 4, '2025-01-10 08:45:00', 1, 'Confirmada asistencia.'),
-(3, '', 3, 2, '2025-01-10 17:30:00', 1, 'Segunda reserva en spinning.'),
-(4, '', 4, 3, '2025-01-11 18:30:00', 1, 'Clase de CrossFit con grupo avanzado.'),
-(5, '', 5, 10, '2025-01-12 09:30:00', 0, 'Cancelada por lesión leve.'),
-(6, '', 6, 7, '2025-01-13 19:15:00', 1, 'Participa con su grupo habitual.'),
-(7, '', 7, 6, '2025-01-14 19:45:00', 1, 'Clase de prueba.'),
-(8, '', 8, 5, '2025-01-15 16:45:00', 1, 'Primera vez en Zumba.'),
-(9, '', 9, 9, '2025-01-16 18:15:00', 1, 'Entrenamiento de alta intensidad.'),
-(10, '', 10, 8, '2025-01-17 08:00:00', 1, 'Sesión matutina de natación.');
+(1, 'Yoga Enero', 1, 1, '2025-01-09 09:00:00', 1, 'Primera clase de yoga del año.'),
+(2, 'Asistencia Confirmada', 2, 4, '2025-01-10 08:45:00', 1, 'Confirmada asistencia.'),
+(3, 'Spinning Avanzado', 3, 2, '2025-01-10 17:30:00', 1, 'Segunda reserva en spinning.'),
+(4, 'CrossFit Grupo', 4, 3, '2025-01-11 18:30:00', 1, 'Clase de CrossFit con grupo avanzado.'),
+(5, 'Cancelada por Lesión', 5, 10, '2025-01-12 09:30:00', 0, 'Cancelada por lesión leve.'),
+(6, 'Grupo Habitual', 6, 7, '2025-01-13 19:15:00', 1, 'Participa con su grupo habitual.'),
+(7, 'Clase Prueba', 7, 6, '2025-01-14 19:45:00', 1, 'Clase de prueba.'),
+(8, 'Zumba Inicial', 8, 5, '2025-01-15 16:45:00', 1, 'Primera vez en Zumba.'),
+(9, 'HIIT Intenso', 9, 9, '2025-01-16 18:15:00', 1, 'Entrenamiento de alta intensidad.'),
+(10, 'Natación Matutina', 10, 8, '2025-01-17 08:00:00', 1, 'Sesión matutina de natación.');
 
 -- --------------------------------------------------------
 
@@ -204,7 +204,7 @@ ALTER TABLE `reservation`
 -- AUTO_INCREMENT de la tabla `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_user` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- Restricciones para tablas volcadas
