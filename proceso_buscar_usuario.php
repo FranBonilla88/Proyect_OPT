@@ -17,7 +17,16 @@ if (mysqli_num_rows($resultado) > 0) { // Mostrar tabla de datos, hay datos
 
     $mensaje = "<h2 class='text-center'>USUARIO ENCONTRADO</h2>";
     $mensaje .= "<table class='table'>";
-    $mensaje .= "<thead><tr><th>IDUSUARIO</th><th>NOMBRE</th><th>EMAIL</th><th>FECHA REGISTRO</th><th>EDAD</th><th>VIP</th><th>OBSERVACION</th><th>ACCION</th></tr></thead>";
+    $mensaje .= "<thead><tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Email</th>
+                <th>Fecha Registro</th>
+                <th>Edad</th>
+                <th>VIP</th>
+                <th>Observación</th>
+                <th>Acción</th>
+            </tr></thead>";
     $mensaje .= "<tbody>";
 
     while ($fila = mysqli_fetch_assoc($resultado)) {
