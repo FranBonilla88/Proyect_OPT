@@ -50,7 +50,7 @@
                     <div class="form-group">
                         <label class="col-xs-4 control-label" for="reservation_date">Reservation Date</label>
                         <div class="col-xs-4">
-                            <input id="reservation_date" name="reservation_date" placeholder="Fecha de reserva" class="form-control input-md" maxlength="25" type="datetime-local">
+                            <input id="reservation_date" name="reservation_date" placeholder="Fecha de reserva" class="form-control input-md" maxlength="25" type="date">
                         </div>
                     </div>
                     <!-- Is Active -->
