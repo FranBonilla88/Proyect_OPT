@@ -114,7 +114,6 @@ INSERT INTO `reservation` (`id_reservation`, `name`, `id_user`, `id_activity`, `
 (8, 'Zumba Inicial', 8, 5, '2025-01-15 16:45:00', 1, 'Primera vez en Zumba.'),
 (9, 'HIIT Intenso', 9, 9, '2025-01-16 18:15:00', 1, 'Entrenamiento de alta intensidad.'),
 (10, 'Natación Matutina', 10, 8, '2025-01-17 08:00:00', 1, 'Sesión matutina de natación.');
-
 -- --------------------------------------------------------
 
 --

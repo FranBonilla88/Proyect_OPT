@@ -5,29 +5,28 @@ $conexion = obtenerConexion();
 // Recuperar parámetro
 $nombre_reserva = $_GET['name_reservation'];
 
-// Se hacen dos consultas porque el formulario necesita
-// mostrar usuarios y actividades en listas desplegables.
 
-$sqlUsuarios = "SELECT id_user, name FROM user;";
-$sqlActividades = "SELECT id_activity, name FROM activity;";
+$sql = "SELECT r.id_reservation, r.name AS name_reservation, r.id_user, r.id_activity, r.reservation_date, r.is_active
+        FROM reservation r
+        WHERE r.name LIKE '%$nombre_reserva%';";
 
-$resultadoUsuarios = mysqli_query($conexion, $sqlUsuarios);
-$resultadoActividades = mysqli_query($conexion, $sqlActividades);
+$resultado = mysqli_query($conexion, $sql);
 
-if (mysqli_num_rows($resultadoUsuarios) > 0 && mysqli_num_rows($resultadoActividades) > 0) {    // Mostrar tabla de datos, hay datos
+if (mysqli_num_rows($resultado) > 0) {    // Mostrar tabla de datos, hay datos
     $mensaje = "<h2 class='text-center'></h2>";
     $mensaje .= "<table class='table table-striped'>";
-    $mensaje .= "<thead><tr><th>ID</th><th>Nombre</th><th>ID Usuario</th><th>ID Actividad</th><th>Fecha Reserva</th><th>Esta Activa</th></tr></thead>";
+    $mensaje .= "<thead><tr><th>ID</th><th>Nombre</th><th>ID Usuario</th><th>ID Actividad</th><th>Fecha Reserva</th><th>¿Esta Activa?</th><th>Acciones</th></tr></thead>";
     $mensaje .= "<tbody>";
 
 
-    while ($fila = mysqli_fetch_assoc($resultadoUsuarios) && $fila = mysqli_fetch_assoc($resultadoActividades)) {
+    while ($fila = mysqli_fetch_assoc($resultado)) {
         $mensaje .= "<tr>";
         $mensaje .= "<td>" . $fila['id_reservation'] . "</td>";
         $mensaje .= "<td>" . $fila['name_reservation'] . "</td>";
         $mensaje .= "<td>" . $fila['id_user'] . "</td>";
         $mensaje .= "<td>" . $fila['id_activity'] . "</td>";
-        $mensaje .= "<td>" . $fila['reservation_date'] . "</td>";
+        $mensaje .= "<td>" . date("d/m/Y H:i", strtotime($fila['reservation_date'])) . "</td>";
+        $mensaje .= "<td>" . ($fila['is_active'] ? 'Sí' : 'No') . "</td>";
 
         // Formulario en la celda para procesar borrado del registro
         $mensaje .= "<td><form action='proceso_borrar_reserva.php' method='post'>";
@@ -41,7 +40,7 @@ if (mysqli_num_rows($resultadoUsuarios) > 0 && mysqli_num_rows($resultadoActivid
 
     $mensaje .= "</tbody></table>";
 } else { // No hay datos
-    $mensaje = "<h2 class='text-center mt-5'>No hay reservas con el nombre $nombre_componente</h2>";
+    $mensaje = "<h2 class='text-center mt-5'>No hay reservas con el nombre $nombre_reserva</h2>";
 }
 
 // Insertamos cabecera

@@ -32,6 +32,13 @@
                 <fieldset>
                     <!-- Form Name -->
                     <legend>Alta de Reserva</legend>
+                    <!-- Name reservation-->
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label" for="name_reservation">Nombre</label>
+                        <div class="col-xs-4">
+                            <input id="name_reservation" name="name_reservation" placeholder="Nombre de la reserva" class="form-control input-md" maxlength="25" type="text">
+                        </div>
+                    </div>
                     <!-- Id User-->
                     <div class="form-group">
                         <label class="col-xs-4 control-label" for="id_user">Id User</label>

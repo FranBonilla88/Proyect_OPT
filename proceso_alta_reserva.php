@@ -3,6 +3,7 @@ require_once("funcionesBD.php");
 $conexion = obtenerConexion();
 
 // Recuperar parámetros
+$name_reservation = $_POST['name_reservation'];
 $id_user = $_POST['id_user'];
 $id_activity = $_POST['id_activity'];
 $reservation_date = $_POST['reservation_date'];
@@ -12,8 +13,8 @@ $comment = $_POST['comment'];
 // No validamos, suponemos que la entrada de datos es correcta
 
 // Definir insert
-$sql = "INSERT INTO reservation(`id_reservation`, `id_user`, `id_activity`, `reservation_date`, `is_active`, `comment`)  
-                VALUES (null,'" . $id_user . "', '" . $id_activity . "', '" . $reservation_date . "', '" . $is_active . "', '" . $comment . "' );";
+$sql = "INSERT INTO reservation(`id_reservation`, `name`, `id_user`, `id_activity`, `reservation_date`, `is_active`, `comment`)  
+                VALUES (null, '" . $name_reservation . "','" . $id_user . "' , '" . $id_activity . "', '" . $reservation_date . "', '" . $is_active . "', '" . $comment . "' );";
 
 // Ejecutar consulta
 $resultado = mysqli_query($conexion, $sql);

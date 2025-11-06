@@ -4,7 +4,7 @@ $conexion = obtenerConexion();
 
 $sql = "SELECT id_reservation, name AS name_reservation, id_user, id_activity, reservation_date, is_active
         FROM reservation
-        ORDER BY id_reservation ASC;";
+        ORDER BY reservation_date DESC;";
 
 // Ejecutar consulta
 $resultado = mysqli_query($conexion, $sql);
@@ -23,7 +23,7 @@ $mensaje .= "<thead><tr>
              </tr></thead>";
 $mensaje .= "<tbody>";
 
-// Recorrer filas
+//Recorrer filas
 while ($fila = mysqli_fetch_assoc($resultado)) {
     $mensaje .= "<tr><td>" . $fila['id_reservation'] . "</td>";
     $mensaje .= "<td>" . $fila['name_reservation'] . "</td>";
@@ -32,7 +32,7 @@ while ($fila = mysqli_fetch_assoc($resultado)) {
     $mensaje .= "<td>" . date("d/m/Y H:i", strtotime($fila['reservation_date'])) . "</td>";
     $mensaje .= "<td>" . ($fila['is_active'] ? 'Sí' : 'No') . "</td>";
 
-    // Acciones
+    //Acciones
     $mensaje .= "<td>
                     <form class='d-inline me-1' action='editar_reserva.php' method='post'>
                         <input type='hidden' name='reserva' value='" . htmlspecialchars(json_encode($fila), ENT_QUOTES) . "' />
