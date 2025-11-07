@@ -32,8 +32,12 @@ if (mysqli_num_rows($resultado) > 0) {    // Mostrar tabla de datos, hay datos
         $mensaje .= "<td><form action='proceso_borrar_reserva.php' method='post'>";
         // input hidden para enviar idReserva a borrar
         $id_reserva = $fila['id_reservation'];
-        $mensaje .= "<input type='hidden' name='id_reservation' value='$id_reserva' />";
-        $mensaje .= "<button type='submit' name='btnBorrar' class='btn btn-primary'><i class='bi bi-trash'></i></button> </form> </td>";
+        $mensaje .= "<td><form action='proceso_borrar_reserva' method='post'>
+                        <input type='hidden' name='id_reservation' value='" . $fila['id_reservation'] . "' />
+                        <button type='submit' name='btnBorrar' class='btn btn-danger'>
+                            <i class='bi bi-trash'></i>
+                        </button>
+                    </form></td>";
 
         $mensaje .= "</tr>";
     }

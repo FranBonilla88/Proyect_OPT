@@ -21,56 +21,63 @@ include_once("cabecera.html");
             <fieldset>
                 <!-- Form Name -->
                 <legend>Alta de Usuario</legend>
+
                 <!-- Text input-->
                 <div class="form-group">
-                    <label class="col-xs-4 control-label" for="txtNombre">Nombre</label>
+                    <label class="col-xs-4 control-label" for="name_user">Nombre</label>
                     <div class="col-xs-4">
-                        <input id="txtNombre" name="txtNombre" placeholder="Nombre de usuario" class="form-control input-md" maxlength="50" type="text">
+                        <input id="name_user" name="name_user" placeholder="Nombre de usuario" class="form-control input-md" maxlength="50" type="text">
                     </div>
                 </div>
+
                 <!-- Text input-->
                 <div class="form-group">
-                    <label class="col-xs-4 control-label" for="txtEmail">Email</label>
+                    <label class="col-xs-4 control-label" for="email">Email</label>
                     <div class="col-xs-4">
-                        <input id="txtEmail" name="txtEmail" placeholder="Email" class="form-control input-md" maxlength="70" type="text">
+                        <input id="email" name="email" placeholder="Email" class="form-control input-md" maxlength="70" type="text">
                     </div>
                 </div>
+
                 <!-- Date input -->
                 <div class="form-group">
-                    <label class="col-xs-4 control-label" for="txtFecha">Fecha</label>
+                    <label class="col-xs-4 control-label" for="registration_date">Fecha</label>
                     <div class="col-xs-4">
-                        <input id="txtFecha" name="txtFecha" placeholder="Selecciona una fecha" class="form-control input-md" type="date">
+                        <input id="registration_date" name="registration_date" placeholder="Selecciona una fecha" class="form-control input-md" type="date">
                     </div>
                 </div>
+
                 <!-- Number input -->
                 <div class="form-group">
-                    <label class="col-xs-4 control-label" for="txtEdad">Edad</label>
+                    <label class="col-xs-4 control-label" for="age">Edad</label>
                     <div class="col-xs-4">
-                        <input id="txtEdad" name="txtEdad" placeholder="Introduce tu edad" class="form-control input-md" type="number" min="5" max="99">
+                        <input id="age" name="age" placeholder="Introduce tu edad" class="form-control input-md" type="number" min="5" max="99">
                     </div>
                 </div>
+
                 <!-- Boolean input (VIP) -->
                 <div class="form-group">
-                    <label class="col-xs-4 control-label" for="txtVip">VIP</label>
+                    <label class="col-xs-4 control-label" for="vip">VIP</label>
                     <div class="col-xs-4">
-                        <select id="txtVip" name="txtVip" class="form-control input-md">
+                        <select id="vip" name="vip" class="form-control input-md">
                             <option value="0">No</option>
                             <option value="1">Sí</option>
                         </select>
                     </div>
                 </div>
+
                 <!-- Text input-->
                 <div class="form-group">
-                    <label class="col-xs-4 control-label" for="txtObservacion">Observación</label>
+                    <label class="col-xs-4 control-label" for="observation">Observación</label>
                     <div class="col-xs-4">
-                        <input id="txtObservacion" name="txtObservacion" placeholder="Escriba una observación" class="form-control input-md" type="text">
+                        <input id="observation" name="observation" placeholder="Escriba una observación" class="form-control input-md" type="text">
                     </div>
                 </div>
+
                 <!-- Button -->
                 <div class="form-group">
-                    <label class="col-xs-4 control-label" for="btnAceptarAltaUsuario"></label>
+                    <label class="col-xs-4 control-label" for="submit_user_registration"></label>
                     <div class="col-xs-4">
-                        <input type="submit" id="btnAceptarAltaUsuario" name="btnAceptarAltaUsuario" class="btn btn-primary" value="Aceptar" />
+                        <input type="submit" id="submit_user_registration" name="submit_user_registration" class="btn btn-primary" value="Aceptar" />
                     </div>
                 </div>
             </fieldset>

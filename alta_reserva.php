@@ -62,19 +62,12 @@
                     </div>
                     <!-- Is Active -->
                     <div class="form-group">
-                        <label class="col-xs-4 control-label" for="is_active">¿Reserva activa?</label>
+                        <label class="col-xs-4 control-label" for="is_active">La reserva esta activa actualmente?</label>
                         <div class="col-xs-4">
                             <select id="is_active" name="is_active" class="form-control">
                                 <option value="1">Sí</option>
                                 <option value="0">No</option>
                             </select>
-                        </div>
-                    </div>
-                    <!-- Comment -->
-                    <div class="form-group">
-                        <label class="col-xs-4 control-label" for="comment">Comentario</label>
-                        <div class="col-xs-4">
-                            <textarea id="comment" name="comment" placeholder="Escribe un comentario" class="form-control input-md" rows="4"></textarea>
                         </div>
                     </div>
                     <!-- Button -->

@@ -3,21 +3,18 @@ require_once("funcionesBD.php");
 $conexion = obtenerConexion();
 
 // Recuperar parámetros
-$name = $_POST['txtNombre'];
-$email = $_POST['txtEmail'];
-$registration_date = $_POST['txtFecha'];
-$age = $_POST['txtEdad'];
-$vip = $_POST['txtVip'];
-$observation = $_POST['txtObservacion'];
-
-
-
+$name_user = $_POST['name_user'];
+$email = $_POST['email'];
+$registration_date = $_POST['registration_date'];
+$age = $_POST['age'];
+$vip = $_POST['vip'];
+$observation = $_POST['observation'];
 
 // No validamos, suponemos que la entrada de datos es correcta
 
 // Definir insert
 $sql = "INSERT INTO user(`id_user`, `name`, `email`, `registration_date`, `age`, `vip`, `observation`) 
-        VALUES (NULL, '" . $name . "', '" . $email . "', '" . $registration_date . "', " . $age . ", " . $vip . ", '" . $observation . "');";
+        VALUES (NULL, '" . $name_user . "', '" . $email . "', '" . $registration_date . "', " . $age . ", " . $vip . ", '" . $observation . "');";
 //CUIDADO, EL NOMBRE DE LAS COLUMNAS NO SON LOS MISMOS QUE DE LOS txt
 
 // Ejecutar consulta
@@ -40,7 +37,6 @@ include_once("cabecera.html");
 
 // Mostrar mensaje calculado antes
 echo $mensaje;
-
 ?>
 </body>
 

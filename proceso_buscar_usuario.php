@@ -3,12 +3,12 @@ require_once("funcionesBD.php");
 $conexion = obtenerConexion();
 
 // Recuperar parámetro
-$nombre_usuario = $_GET['txtNombreUsuario'];
+$nombre_usuario = $_GET['name_user'];
 
 // Aquí te muestro la versión simple, similar a la tuya:
 $sql = "SELECT * 
         FROM user 
-        WHERE name LIKE '%$nombre_usuario%';";
+        WHERE name LIKE '%$name_user%';";
 
 
 $resultado = mysqli_query($conexion, $sql);
@@ -40,14 +40,12 @@ if (mysqli_num_rows($resultado) > 0) { // Mostrar tabla de datos, hay datos
         $mensaje .= "<td>" . $fila['observation'] . "</td>";
 
         // Formulario en la celda para procesar borrado del usuario
-        $mensaje .= "<td>
-                    <form action='proceso_borrar_usuario.php' method='post'>
+        $mensaje .= "<td><form action='proceso_borrar_usuario.php' method='post'>
                         <input type='hidden' name='id_user' value='" . $fila['id_user'] . "' />
                         <button type='submit' name='btnBorrar' class='btn btn-danger'>
                             <i class='bi bi-trash'></i>
                         </button>
-                    </form>
-                 </td>";
+                    </form></td>";
 
         $mensaje .= "</tr>";
     }

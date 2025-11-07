@@ -28,4 +28,3 @@ include_once("cabecera.html");
 
 // Mostrar mensaje calculado antes
 echo $mensaje;
-?>

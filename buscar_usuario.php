@@ -8,14 +8,15 @@ include_once("cabecera.html");
             <fieldset>
                 <!-- Form Name -->
                 <legend>Buscar un usuario</legend>
+
                 <!-- Text input-->
                 <div class="form-group">
-                    <label class="col-xs-4 control-label" for="txtNombreUsuario">Nombre</label>
+                    <label class="col-xs-4 control-label" for="name_user">Nombre</label>
                     <div class="col-xs-4">
-                        <input id="txtNombreUsuario" name="txtNombreUsuario" placeholder="Nombre del usuario" class="form-control input-md" type="text">
+                        <input id="name_user" name="name_user" placeholder="Nombre del usuario" class="form-control input-md" type="text">
                     </div>
                 </div>
-                
+
                 <!-- Button -->
                 <div class="form-group">
                     <label class="col-xs-4 control-label" for="btnAceptarBuscarUsuario"></label>
@@ -25,7 +26,6 @@ include_once("cabecera.html");
                 </div>
             </fieldset>
         </form>
-
     </div>
 </div>
 </body>
