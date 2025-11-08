@@ -13,9 +13,9 @@ $sql = "SELECT r.id_reservation, r.name AS name_reservation, r.id_user, r.id_act
 $resultado = mysqli_query($conexion, $sql);
 
 if (mysqli_num_rows($resultado) > 0) {    // Mostrar tabla de datos, hay datos
-    $mensaje = "<h2 class='text-center'></h2>";
+    $mensaje = "<h2 class='text-center'>Reserva Encontrada</h2>";
     $mensaje .= "<table class='table table-striped'>";
-    $mensaje .= "<thead><tr><th>ID</th><th>Nombre</th><th>ID Usuario</th><th>ID Actividad</th><th>Fecha Reserva</th><th>¿Esta Activa?</th><th>Acciones</th></tr></thead>";
+    $mensaje .= "<thead><tr><th>ID</th><th>Nombre</th><th>Id Usuario</th><th>Id Actividad</th><th>Fecha Reserva</th><th>¿Esta Activa?</th><th>Acciones</th></tr></thead>";
     $mensaje .= "<tbody>";
 
 
@@ -28,11 +28,12 @@ if (mysqli_num_rows($resultado) > 0) {    // Mostrar tabla de datos, hay datos
         $mensaje .= "<td>" . date("d/m/Y H:i", strtotime($fila['reservation_date'])) . "</td>";
         $mensaje .= "<td>" . ($fila['is_active'] ? 'Sí' : 'No') . "</td>";
 
-        // Formulario en la celda para procesar borrado del registro
-        $mensaje .= "<td><form action='proceso_borrar_reserva.php' method='post'>";
+
         // input hidden para enviar idReserva a borrar
         $id_reserva = $fila['id_reservation'];
-        $mensaje .= "<td><form action='proceso_borrar_reserva' method='post'>
+
+        // Formulario en la celda para procesar borrado del registro
+        $mensaje .= "<td><form action='proceso_borrar_reserva.php' method='post'>
                         <input type='hidden' name='id_reservation' value='" . $fila['id_reservation'] . "' />
                         <button type='submit' name='btnBorrar' class='btn btn-danger'>
                             <i class='bi bi-trash'></i>

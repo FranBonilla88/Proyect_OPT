@@ -3,7 +3,7 @@ require_once("funcionesBD.php");
 $conexion = obtenerConexion();
 
 // Recuperar parámetro
-$nombre_usuario = $_GET['name_user'];
+$name_user = $_GET['name_user'];
 
 // Aquí te muestro la versión simple, similar a la tuya:
 $sql = "SELECT * 
@@ -15,8 +15,8 @@ $resultado = mysqli_query($conexion, $sql);
 
 if (mysqli_num_rows($resultado) > 0) { // Mostrar tabla de datos, hay datos
 
-    $mensaje = "<h2 class='text-center'>USUARIO ENCONTRADO</h2>";
-    $mensaje .= "<table class='table'>";
+    $mensaje = "<h2 class='text-center'>Usuario Encontrado</h2>";
+    $mensaje .= "<table class='table table-striped'>";
     $mensaje .= "<thead><tr>
                 <th>ID</th>
                 <th>Nombre</th>
@@ -52,7 +52,7 @@ if (mysqli_num_rows($resultado) > 0) { // Mostrar tabla de datos, hay datos
 
     $mensaje .= "</tbody></table>";
 } else { // No hay datos
-    $mensaje = "<h2 class='text-center mt-5'>No hay usuarios con nombre $nombre_usuario</h2>";
+    $mensaje = "<h2 class='text-center mt-5'>No hay usuarios con nombre $name_user</h2>";
 }
 
 // Insertamos cabecera

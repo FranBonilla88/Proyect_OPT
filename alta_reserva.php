@@ -62,7 +62,7 @@
                     </div>
                     <!-- Is Active -->
                     <div class="form-group">
-                        <label class="col-xs-4 control-label" for="is_active">La reserva esta activa actualmente?</label>
+                        <label class="col-xs-4 control-label" for="is_active">¿La reserva esta activa actualmente?</label>
                         <div class="col-xs-4">
                             <select id="is_active" name="is_active" class="form-control">
                                 <option value="1">Sí</option>
