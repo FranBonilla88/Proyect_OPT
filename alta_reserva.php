@@ -5,7 +5,6 @@
 
     // Se hacen dos consultas porque el formulario necesita
     // mostrar usuarios y actividades en listas desplegables.
-
     $sqlUsuarios = "SELECT id_user, name FROM user;";
     $sqlActividades = "SELECT id_activity, name FROM activity;";
 
