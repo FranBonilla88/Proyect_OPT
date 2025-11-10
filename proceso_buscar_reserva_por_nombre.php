@@ -28,7 +28,6 @@ if (mysqli_num_rows($resultado) > 0) {    // Mostrar tabla de datos, hay datos
         $mensaje .= "<td>" . date("d/m/Y H:i", strtotime($fila['reservation_date'])) . "</td>";
         $mensaje .= "<td>" . ($fila['is_active'] ? 'Sí' : 'No') . "</td>";
 
-
         // input hidden para enviar idReserva a borrar
         $id_reserva = $fila['id_reservation'];
 
