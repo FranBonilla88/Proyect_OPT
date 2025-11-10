@@ -3,7 +3,7 @@ require_once("funcionesBD.php");
 $conexion = obtenerConexion();
 
 // Recuperar parámetros de forma segura
-$minimum_age = $_GET['minimum_age'];  //<--valores por defecto si no se envia nada
+$minimum_age = $_GET['minimum_age'];
 $maximum_age = $_GET['maximum_age'];
 
 // Consulta filtrada
