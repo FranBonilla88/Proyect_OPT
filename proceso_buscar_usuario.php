@@ -5,7 +5,6 @@ $conexion = obtenerConexion();
 // Recuperar parámetro
 $name_user = $_GET['name_user'];
 
-// Aquí te muestro la versión simple, similar a la tuya:
 $sql = "SELECT * 
         FROM user 
         WHERE name LIKE '%$name_user%';";
