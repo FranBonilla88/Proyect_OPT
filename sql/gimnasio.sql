@@ -26,7 +26,7 @@ SET time_zone = "+00:00";
 --
 -- Estructura de tabla para la tabla `activity`
 --
-
+DROP TABLE IF EXISTS `activity`;
 CREATE TABLE `activity` (
   `id_activity` int NOT NULL,
   `name` varchar(50) NOT NULL,
@@ -57,7 +57,7 @@ INSERT INTO `activity` (`id_activity`, `name`, `description`, `activity_day`, `d
 --
 -- Estructura de tabla para la tabla `assessment`
 --
-
+DROP TABLE IF EXISTS `assessment`;
 CREATE TABLE `assessment` (
   `id_assessment` int NOT NULL,
   `punctuation` enum('excellent','good','average','poor') NOT NULL,
@@ -87,7 +87,7 @@ INSERT INTO `assessment` (`id_assessment`, `punctuation`, `comment`, `shipping_d
 --
 -- Estructura de tabla para la tabla `reservation`
 --
-
+DROP TABLE IF EXISTS `reservation`;
 CREATE TABLE `reservation` (
   `id_reservation` int NOT NULL,
   `name` varchar(40) NOT NULL,
@@ -119,7 +119,7 @@ INSERT INTO `reservation` (`id_reservation`, `name`, `id_user`, `id_activity`, `
 --
 -- Estructura de tabla para la tabla `user`
 --
-
+DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
   `id_user` int NOT NULL,
   `name` varchar(50) NOT NULL,
@@ -157,11 +157,6 @@ ALTER TABLE `activity`
   ADD PRIMARY KEY (`id_activity`);
 
 --
--- Indices de la tabla `assessment`
---
-
-
---
 -- Indices de la tabla `reservation`
 --
 ALTER TABLE `reservation`
@@ -175,19 +170,12 @@ ALTER TABLE `reservation`
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id_user`);
 
---
--- AUTO_INCREMENT de las tablas volcadas
---
 
 --
 -- AUTO_INCREMENT de la tabla `activity`
 --
 ALTER TABLE `activity`
   MODIFY `id_activity` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
---
--- AUTO_INCREMENT de la tabla `assessment`
---
 
 
 --
@@ -203,14 +191,6 @@ ALTER TABLE `reservation`
 --
 ALTER TABLE `user`
   MODIFY `id_user` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
-
---
--- Restricciones para tablas volcadas
---
-
---
--- Filtros para la tabla `assessment`
---
 
 
 --
