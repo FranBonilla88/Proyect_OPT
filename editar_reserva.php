@@ -56,6 +56,20 @@ include_once("cabecera.html");
                     </div>
                 </div>
 
+                <!-- Estado -->
+                <div class="form-group">
+                    <label class="col-xs-4 control-label" for="status">Estado de la reserva:</label>
+                    <div class="col-xs-4">
+                        <select name="status" id="status" class="form-control" required>
+                            <option value="pending" <?php echo ($reserva['status'] == 'pending' ? 'selected' : ''); ?>>Pendiente</option>
+                            <option value="confirmed" <?php echo ($reserva['status'] == 'confirmed' ? 'selected' : ''); ?>>Confirmada</option>
+                            <option value="cancelled" <?php echo ($reserva['status'] == 'cancelled' ? 'selected' : ''); ?>>Cancelada</option>
+                            <option value="completed" <?php echo ($reserva['status'] == 'completed' ? 'selected' : ''); ?>>Completada</option>
+                        </select>
+                    </div>
+                </div>
+
+
                 <!-- Hidden con el id -->
                 <input value="<?php echo $reserva['id_reservation'] ?>" type="hidden" name="id_reservation" id="id_reservation" />
 

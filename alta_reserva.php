@@ -35,7 +35,7 @@
                     <div class="form-group">
                         <label class="col-xs-4 control-label" for="name_reservation">Nombre</label>
                         <div class="col-xs-4">
-                            <input id="name_reservation" name="name_reservation" placeholder="Nombre de la reserva" class="form-control input-md" maxlength="25" type="text">
+                            <input id="name_reservation" name="name_reservation" placehol der="Nombre de la reserva" class="form-control input-md" maxlength="25" type="text">
                         </div>
                     </div>
                     <!-- Id User-->
@@ -66,6 +66,18 @@
                             <select id="is_active" name="is_active" class="form-control">
                                 <option value="1">Sí</option>
                                 <option value="0">No</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- Status -->
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label" for="status">Estado de la reserva:</label>
+                        <div class="col-xs-4">
+                            <select name="status" id="status" class="form-control" required>
+                                <option value="pending">Pendiente</option>
+                                <option value="confirmed">Confirmada</option>
+                                <option value="cancelled">Cancelada</option>
+                                <option value="completed">Completada</option>
                             </select>
                         </div>
                     </div>

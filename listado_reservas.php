@@ -2,7 +2,7 @@
 require_once("funcionesBD.php");
 $conexion = obtenerConexion();
 
-$sql = "SELECT id_reservation, name AS name_reservation, id_user, id_activity, reservation_date, is_active
+$sql = "SELECT id_reservation, name AS name_reservation, id_user, id_activity, reservation_date, is_active, status
         FROM reservation
         ORDER BY id_reservation ASC;";
 
@@ -19,8 +19,9 @@ $mensaje .= "<thead><tr>
                 <th>Id Actividad</th>
                 <th>Fecha Reserva</th>
                 <th>¿Esta activa?</th>
+                <th>Estado</th>
                 <th>Acciones</th>
-             </tr></thead>";
+                </tr></thead>";
 $mensaje .= "<tbody>";
 
 // Recorrer filas
@@ -31,6 +32,7 @@ while ($fila = mysqli_fetch_assoc($resultado)) {
     $mensaje .= "<td>" . $fila['id_activity'] . "</td>";
     $mensaje .= "<td>" . date("d/m/Y H:i", strtotime($fila['reservation_date'])) . "</td>";
     $mensaje .= "<td>" . ($fila['is_active'] ? 'Sí' : 'No') . "</td>";
+    $mensaje .= "<td>" . ucfirst($fila['status']) . "</td>";
 
     // Acciones
     $mensaje .= "<td>

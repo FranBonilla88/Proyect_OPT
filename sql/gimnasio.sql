@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: db
--- Tiempo de generación: 06-11-2025 a las 18:31:32
+-- Tiempo de generación: 12-11-2025 a las 15:23:32
 -- Versión del servidor: 8.0.43
 -- Versión de PHP: 8.2.27
 
@@ -26,7 +26,7 @@ SET time_zone = "+00:00";
 --
 -- Estructura de tabla para la tabla `activity`
 --
-DROP TABLE IF EXISTS `activity`;
+
 CREATE TABLE `activity` (
   `id_activity` int NOT NULL,
   `name` varchar(50) NOT NULL,
@@ -57,9 +57,10 @@ INSERT INTO `activity` (`id_activity`, `name`, `description`, `activity_day`, `d
 --
 -- Estructura de tabla para la tabla `assessment`
 --
-DROP TABLE IF EXISTS `assessment`;
+
 CREATE TABLE `assessment` (
   `id_assessment` int NOT NULL,
+  `id_reservation` int NOT NULL,
   `punctuation` enum('excellent','good','average','poor') NOT NULL,
   `comment` text NOT NULL,
   `shipping_date` datetime NOT NULL,
@@ -70,24 +71,24 @@ CREATE TABLE `assessment` (
 -- Volcado de datos para la tabla `assessment`
 --
 
-INSERT INTO `assessment` (`id_assessment`, `punctuation`, `comment`, `shipping_date`, `checked`) VALUES
-('excellent', 'Instructor muy atento.', '2025-01-10 11:00:00', 1),
-('good', 'Clase tranquila y relajante.', '2025-01-10 10:30:00', 1),
-('average', 'Demasiado intensa para principiantes.', '2025-01-11 20:00:00', 1),
-('excellent', 'Muy buena organización.', '2025-01-12 21:00:00', 1),
-('poor', 'No asistió por cancelación.', '2025-01-13 08:00:00', 0),
-('good', 'Clase completa y bien explicada.', '2025-01-14 21:00:00', 1),
-('average', 'Buena sesión, aunque un poco larga.', '2025-01-15 22:00:00', 1),
-('excellent', 'Muy divertida y con buena música.', '2025-01-16 18:00:00', 1),
-('good', 'Entrenamiento eficaz.', '2025-01-17 19:30:00', 1),
-('excellent', 'Piscina limpia y monitor excelente.', '2025-01-18 09:30:00', 1);
+INSERT INTO `assessment` (`id_assessment`, `id_reservation`, `punctuation`, `comment`, `shipping_date`, `checked`) VALUES
+(1, 1, 'excellent', 'Instructor muy atento.', '2025-01-10 11:00:00', 1),
+(2, 2, 'good', 'Clase tranquila y relajante.', '2025-01-10 10:30:00', 1),
+(3, 3, 'average', 'Demasiado intensa para principiantes.', '2025-01-11 20:00:00', 1),
+(4, 4, 'excellent', 'Muy buena organización.', '2025-01-12 21:00:00', 1),
+(5, 5, 'poor', 'No asistió por cancelación.', '2025-01-13 08:00:00', 0),
+(6, 6, 'good', 'Clase completa y bien explicada.', '2025-01-14 21:00:00', 1),
+(7, 7, 'average', 'Buena sesión, aunque un poco larga.', '2025-01-15 22:00:00', 1),
+(8, 8, 'excellent', 'Muy divertida y con buena música.', '2025-01-16 18:00:00', 1),
+(9, 9, 'good', 'Entrenamiento eficaz.', '2025-01-17 19:30:00', 1),
+(10, 10, 'excellent', 'Piscina limpia y monitor excelente.', '2025-01-18 09:30:00', 1);
 
 -- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `reservation`
 --
-DROP TABLE IF EXISTS `reservation`;
+
 CREATE TABLE `reservation` (
   `id_reservation` int NOT NULL,
   `name` varchar(40) NOT NULL,
@@ -95,31 +96,31 @@ CREATE TABLE `reservation` (
   `id_activity` int NOT NULL,
   `reservation_date` datetime NOT NULL,
   `is_active` tinyint(1) NOT NULL,
-  `id_assessment` int DEFAULT NULL
+  `status` enum('pending','confirmed','cancelled','completed') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `reservation`
 --
 
-INSERT INTO `reservation` (`id_reservation`, `name`, `id_user`, `id_activity`, `reservation_date`, `is_active`) VALUES
-(1, 'Yoga Enero', 1, 1, '2025-01-09 09:00:00', 1),
-(2, 'Asistencia Confirmada', 2, 4, '2025-02-10 08:45:00', 1),
-(3, 'Spinning Avanzado', 3, 2, '2025-03-10 17:30:00', 1),
-(4, 'CrossFit Grupo', 4, 3, '2025-04-11 18:30:00', 1),
-(5, 'Cancelada por Lesión', 5, 10, '2025-05-12 09:30:00', 0),
-(6, 'Grupo Habitual', 6, 7, '2025-06-13 19:15:00', 1),
-(7, 'Clase Prueba', 7, 6, '2025-07-14 19:45:00', 1),
-(8, 'Zumba Inicial', 8, 5, '2025-08-15 16:45:00', 1),
-(9, 'HIIT Intenso', 9, 9, '2025-09-16 18:15:00', 1),
-(10, 'Natación Matutina', 10, 8, '2025-10-17 08:00:00', 1);
+INSERT INTO `reservation` (`id_reservation`, `name`, `id_user`, `id_activity`, `reservation_date`, `is_active`, `status`) VALUES
+(1, 'Primera clase de yoga del año.', 1, 1, '2025-01-09 09:00:00', 1, 'completed'),
+(2, 'Confirmada asistencia.', 2, 4, '2025-01-10 08:45:00', 1, 'confirmed'),
+(3, 'Segunda reserva en spinning.', 3, 2, '2025-01-10 17:30:00', 1, 'pending'),
+(4, 'Clase de CrossFit con grupo avanzado.', 4, 3, '2025-01-11 18:30:00', 1, 'completed'),
+(5, 'Cancelada por lesión leve.', 5, 10, '2025-01-12 09:30:00', 0, 'cancelled'),
+(6, 'Participa con su grupo habitual.', 6, 7, '2025-01-13 19:15:00', 1, 'confirmed'),
+(7, 'Clase de prueba.', 7, 6, '2025-01-14 19:45:00', 1, 'pending'),
+(8, 'Primera vez en Zumba.', 8, 5, '2025-01-15 16:45:00', 1, 'completed'),
+(9, 'Entrenamiento de alta intensidad.', 9, 9, '2025-01-16 18:15:00', 1, 'confirmed'),
+(10, 'Sesión matutina de natación.', 10, 8, '2025-01-17 08:00:00', 1, 'completed');
 
 -- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `user`
 --
-DROP TABLE IF EXISTS `user`;
+
 CREATE TABLE `user` (
   `id_user` int NOT NULL,
   `name` varchar(50) NOT NULL,
@@ -157,12 +158,19 @@ ALTER TABLE `activity`
   ADD PRIMARY KEY (`id_activity`);
 
 --
+-- Indices de la tabla `assessment`
+--
+ALTER TABLE `assessment`
+  ADD PRIMARY KEY (`id_assessment`),
+  ADD KEY `FK_assessment_reservation` (`id_reservation`);
+
+--
 -- Indices de la tabla `reservation`
 --
 ALTER TABLE `reservation`
-  ADD CONSTRAINT `FK_reservation_activity` FOREIGN KEY (`id_activity`) REFERENCES `activity` (`id_activity`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `FK_reservation_user` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `FK_reservation_assessment` FOREIGN KEY (`id_assessment`) REFERENCES `assessment` (`id_assessment`) ON DELETE SET NULL ON UPDATE CASCADE;
+  ADD PRIMARY KEY (`id_reservation`),
+  ADD KEY `FK_reservation_user` (`id_user`),
+  ADD KEY `FK_reservation_activity` (`id_activity`);
 
 --
 -- Indices de la tabla `user`
@@ -170,6 +178,9 @@ ALTER TABLE `reservation`
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id_user`);
 
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
 
 --
 -- AUTO_INCREMENT de la tabla `activity`
@@ -177,29 +188,40 @@ ALTER TABLE `user`
 ALTER TABLE `activity`
   MODIFY `id_activity` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
+--
+-- AUTO_INCREMENT de la tabla `assessment`
+--
+ALTER TABLE `assessment`
+  MODIFY `id_assessment` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `reservation`
 --
 ALTER TABLE `reservation`
-  ADD CONSTRAINT `FK_reservation_activity` FOREIGN KEY (`id_activity`) REFERENCES `activity` (`id_activity`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `FK_reservation_user` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `FK_reservation_assessment` FOREIGN KEY (`id_assessment`) REFERENCES `assessment` (`id_assessment`) ON DELETE SET NULL ON UPDATE CASCADE;
+  MODIFY `id_reservation` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_user` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `assessment`
+--
+ALTER TABLE `assessment`
+  ADD CONSTRAINT `FK_assessment_reservation` FOREIGN KEY (`id_reservation`) REFERENCES `reservation` (`id_reservation`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
 -- Filtros para la tabla `reservation`
 --
 ALTER TABLE `reservation`
   ADD CONSTRAINT `FK_reservation_activity` FOREIGN KEY (`id_activity`) REFERENCES `activity` (`id_activity`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `FK_reservation_user` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `FK_reservation_assessment` FOREIGN KEY (`id_assessment`) REFERENCES `assessment` (`id_assessment`) ON DELETE SET NULL ON UPDATE CASCADE;
+  ADD CONSTRAINT `FK_reservation_user` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

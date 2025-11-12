@@ -9,6 +9,7 @@ $id_user = $_POST['id_user'];
 $id_activity = $_POST['id_activity'];
 $reservation_date = $_POST['reservation_date'];
 $is_active = $_POST['is_active'];
+$status = $_POST['status'];
 
 // No validamos, suponemos que la entrada de datos es correcta
 
@@ -18,7 +19,8 @@ $sql = "UPDATE reservation
             id_user = '$id_user',
             id_activity = '$id_activity',
             reservation_date = '$reservation_date',
-            is_active = '$is_active'
+            is_active = '$is_active',
+            status = '$status'
         WHERE id_reservation = $id_reservation;";
 
 //Ejecutar consulta
@@ -30,7 +32,7 @@ if (mysqli_errno($conexion) != 0) {
     $descrerror = mysqli_error($conexion);
     $mensaje = "<h2 class='text-center mt-5'>Se ha producido un error número $numerror que corresponde a: $descrerror</h2>";
 } else {
-    $mensaje = "<h2 class='text-center mt-5'>Usuario actualizado correctamente</h2>";
+    $mensaje = "<h2 class='text-center mt-5'>Reserva actualizada correctamente</h2>";
 }
 // Redireccionar tras 5 segundos al index.
 // Siempre debe ir antes de DOCTYPE

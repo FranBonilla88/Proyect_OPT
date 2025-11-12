@@ -8,12 +8,14 @@ $id_user = $_POST['id_user'];
 $id_activity = $_POST['id_activity'];
 $reservation_date = $_POST['reservation_date'];
 $is_active = $_POST['is_active'];
+$status = $_POST['status'];
 
 // No validamos, suponemos que la entrada de datos es correcta
 
 // Definir insert
-$sql = "INSERT INTO reservation(`id_reservation`, `name`, `id_user`, `id_activity`, `reservation_date`, `is_active`)  
-                VALUES (null, '" . $name_reservation . "','" . $id_user . "' , '" . $id_activity . "', '" . $reservation_date . "', '" . $is_active . "');";
+$sql = "INSERT INTO reservation(`id_reservation`, `name`, `id_user`, `id_activity`, `reservation_date`, `is_active`, `status`)  
+        VALUES (null, '" . $name_reservation . "', '" . $id_user . "', '" . $id_activity . "', '" . $reservation_date . "', '" . $is_active . "', '" . $status . "');";
+
 
 // Ejecutar consulta
 $resultado = mysqli_query($conexion, $sql);
