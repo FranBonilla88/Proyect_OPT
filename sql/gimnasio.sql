@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: db
--- Tiempo de generación: 12-11-2025 a las 15:23:32
+-- Tiempo de generación: 12-11-2025 a las 15:38:19
 -- Versión del servidor: 8.0.43
 -- Versión de PHP: 8.2.27
 
@@ -94,7 +94,7 @@ CREATE TABLE `reservation` (
   `name` varchar(40) NOT NULL,
   `id_user` int NOT NULL,
   `id_activity` int NOT NULL,
-  `reservation_date` datetime NOT NULL,
+  `reservation_date` date NOT NULL,
   `is_active` tinyint(1) NOT NULL,
   `status` enum('pending','confirmed','cancelled','completed') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -104,16 +104,18 @@ CREATE TABLE `reservation` (
 --
 
 INSERT INTO `reservation` (`id_reservation`, `name`, `id_user`, `id_activity`, `reservation_date`, `is_active`, `status`) VALUES
-(1, 'Primera clase de yoga del año.', 1, 1, '2025-01-09 09:00:00', 1, 'completed'),
-(2, 'Confirmada asistencia.', 2, 4, '2025-01-10 08:45:00', 1, 'confirmed'),
-(3, 'Segunda reserva en spinning.', 3, 2, '2025-01-10 17:30:00', 1, 'pending'),
-(4, 'Clase de CrossFit con grupo avanzado.', 4, 3, '2025-01-11 18:30:00', 1, 'completed'),
-(5, 'Cancelada por lesión leve.', 5, 10, '2025-01-12 09:30:00', 0, 'cancelled'),
-(6, 'Participa con su grupo habitual.', 6, 7, '2025-01-13 19:15:00', 1, 'confirmed'),
-(7, 'Clase de prueba.', 7, 6, '2025-01-14 19:45:00', 1, 'pending'),
-(8, 'Primera vez en Zumba.', 8, 5, '2025-01-15 16:45:00', 1, 'completed'),
-(9, 'Entrenamiento de alta intensidad.', 9, 9, '2025-01-16 18:15:00', 1, 'confirmed'),
-(10, 'Sesión matutina de natación.', 10, 8, '2025-01-17 08:00:00', 1, 'completed');
+(1, 'Primera clase de yoga del año.', 1, 1, '2025-01-09', 1, 'completed'),
+(2, 'Confirmada asistencia.', 2, 4, '2025-01-10', 1, 'confirmed'),
+(3, 'Segunda reserva en spinning.', 3, 2, '2025-01-10', 1, 'pending'),
+(4, 'Clase de CrossFit con grupo avanzado.', 4, 3, '2025-01-11', 1, 'completed'),
+(5, 'Cancelada por lesión leve.', 5, 10, '2025-01-12', 0, 'cancelled'),
+(6, 'Participa con su grupo habitual.', 6, 7, '2025-01-13', 1, 'confirmed'),
+(7, 'Clase de prueba.', 7, 6, '2025-01-14', 1, 'pending'),
+(8, 'Primera vez en Zumba.', 8, 5, '2025-01-15', 1, 'completed'),
+(9, 'Entrenamiento de alta intensidad.', 9, 9, '2025-01-16', 1, 'confirmed'),
+(10, 'Sesión matutina de natación.', 10, 8, '2025-01-17', 1, 'completed'),
+(12, 'Yoga Enero', 2, 1, '2025-11-04', 1, 'pending'),
+(13, 'Crossfit Bonis', 2, 3, '2025-11-02', 1, 'completed');
 
 -- --------------------------------------------------------
 
@@ -198,7 +200,7 @@ ALTER TABLE `assessment`
 -- AUTO_INCREMENT de la tabla `reservation`
 --
 ALTER TABLE `reservation`
-  MODIFY `id_reservation` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_reservation` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `user`
