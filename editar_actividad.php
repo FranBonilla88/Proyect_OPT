@@ -2,8 +2,20 @@
 // Recupero datos de parámetro en forma de array asociativo
 $actividad = json_decode($_POST['actividad'], true);
 
+require_once("funcionesBD.php");
 
-$entrenador="toFill";
+    $conexion = obtenerConexion();
+
+    $sql = "SELECT id_user, name FROM user;";
+
+    $resultado = mysqli_query($conexion, $sql);
+    //echo $_POST['actividad'];
+    $options = "";
+    while ($fila = mysqli_fetch_assoc($resultado)) {
+        //echo json_encode($fila);
+        $options .= " <option"  . (($fila["id_user"]==$actividad['id_trainer'])?" selected":"") . " value='" . $fila["id_user"] . "'>" . $fila["name"] . "</option>";
+        
+    }
 
 
 // Cabecera HTML que incluye navbar
@@ -14,7 +26,7 @@ include_once("cabecera.html");
     <div class="row">
         <form class="form-horizontal" action="proceso_editar_actividad.php" name="frmEditarUsuario" id="frmEditarUsuario" method="post">
             <fieldset>
-                <legend>Modificación de Usuario</legend>
+                <legend>Modificación de Actividad</legend>
 
                 <div class="form-group">
                     <label class="col-xs-4 control-label" for="nameActivity">Nombre</label>
@@ -33,7 +45,7 @@ include_once("cabecera.html");
                 <div class="form-group">
                     <label class="col-xs-4 control-label" for="activityDay">Fecha</label>
                     <div class="col-xs-4">
-                        <input value="<?php echo $actividad['activity_day'] ?>" id="activityDay" name="activityDay" placeholder="Selecciona una fecha" class="form-control input-md" type="date">
+                        <input value="<?php echo $actividad['activity_day'] ?>" id="activityDay" name="activityDay" placeholder="Selecciona una fecha" class="form-control input-md" type="datetime-local">
                     </div>
                 </div>
 
@@ -55,10 +67,10 @@ include_once("cabecera.html");
                 </div>
 
                 <div class="form-group">
-                    <label class="col-xs-4 control-label" for="idTrainer">¿Esta disponible?</label>
+                    <label class="col-xs-4 control-label" for="idTrainer">Entranador</label>
                     <div class="col-xs-4">
                         <select id="idTrainer" name="idTrainer" class="form-control input-md">
-                            <?php $entrenador ?>
+                            <?php echo $options ?>
                         </select>
                     </div>
                 </div>
