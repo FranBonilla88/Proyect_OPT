@@ -27,7 +27,6 @@ if (mysqli_errno($conexion) !=0 ) {
     $mesage = "<h2 class='text-center mt-5'>Actividad registrada correctamente</h2>";
 }
 
-echo $sql;
 include_once("cabecera.html");
 
 echo $mesage;
