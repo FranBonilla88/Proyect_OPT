@@ -9,24 +9,22 @@ $id_user = $_POST['id_user'];
 $id_activity = $_POST['id_activity'];
 $reservation_date = $_POST['reservation_date'];
 $is_active = $_POST['is_active'];
-$id_assessment = $_POST['id_assessment'];
+$id_assessment = $_POST['lstAssessment'];
 
-// No validamos, suponemos que la entrada de datos es correcta
-
-// Consulta UPDATE (sin campo status)
+// Consulta UPDATE
 $sql = "UPDATE reservation 
         SET name = '$name',
-            id_user = '$id_user',
-            id_activity = '$id_activity',
+            id_user = $id_user,
+            id_activity = $id_activity,
             reservation_date = '$reservation_date',
-            is_active = '$is_active',
-            id_assessment = '$id_assessment'
-        WHERE id_reservation = '$id_reservation';";
+            is_active = $is_active,
+            id_assessment = $id_assessment
+        WHERE id_reservation = $id_reservation;";
 
-// Ejecutar consulta
+// Ejecutamos consulta
 $resultado = mysqli_query($conexion, $sql);
 
-// Verificar errores y mostrar mensaje
+// Verificamos errores y mostrar mensaje
 if (mysqli_errno($conexion) != 0) {
     $numerror = mysqli_errno($conexion);
     $descrerror = mysqli_error($conexion);

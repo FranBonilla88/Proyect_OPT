@@ -8,6 +8,7 @@ $sql = "SELECT r.id_reservation,
                r.id_activity, 
                r.reservation_date, 
                r.is_active, 
+               r.id_assessment,            
                s.value AS assessment_value
         FROM reservation r
         LEFT JOIN assessment s ON r.id_assessment = s.id_assessment
@@ -33,6 +34,7 @@ $mensaje .= "<tbody>";
 
 // Recorremos todas las filas
 while ($fila = mysqli_fetch_assoc($resultado)) {
+
     $mensaje .= "<tr><td>" . $fila['id_reservation'] . "</td>";
     $mensaje .= "<td>" . $fila['name_reservation'] . "</td>";
     $mensaje .= "<td>" . $fila['id_user'] . "</td>";

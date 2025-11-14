@@ -36,14 +36,15 @@ include_once("cabecera.html");
     <div class="row">
         <form class="form-horizontal" action="proceso_alta_reserva.php" name="frmAltaReserva" id="frmAltaReserva" method="post">
             <fieldset>
-                <!-- Form Name -->
+
                 <legend>Alta de Reserva</legend>
 
                 <!-- Nombre de la reserva -->
                 <div class="form-group">
                     <label class="col-xs-4 control-label" for="name_reservation">Nombre</label>
                     <div class="col-xs-4">
-                        <input id="name_reservation" name="name_reservation" placeholder="Nombre de la reserva" class="form-control input-md" maxlength="25" type="text" required>
+                        <input id="name_reservation" name="name_reservation" placeholder="Nombre de la reserva"
+                            class="form-control input-md" maxlength="25" type="text" required>
                     </div>
                 </div>
 
@@ -73,7 +74,8 @@ include_once("cabecera.html");
                 <div class="form-group">
                     <label class="col-xs-4 control-label" for="reservation_date">Fecha de reserva</label>
                     <div class="col-xs-4">
-                        <input id="reservation_date" name="reservation_date" class="form-control input-md" type="date" required>
+                        <input id="reservation_date" name="reservation_date" class="form-control input-md"
+                            type="date" required>
                     </div>
                 </div>
 
@@ -90,9 +92,9 @@ include_once("cabecera.html");
 
                 <!-- Valoración -->
                 <div class="form-group">
-                    <label class="col-xs-4 control-label" for="id_assessment">Valoración</label>
+                    <label class="col-xs-4 control-label" for="lstAssessment">Valoración</label>
                     <div class="col-xs-4">
-                        <select id="id_assessment" name="id_assessment" class="form-control" required>
+                        <select id="lstAssessment" name="lstAssessment" class="form-control" required>
                             <option value="">Seleccione una valoración</option>
                             <?php echo $optionsAssessment; ?>
                         </select>
@@ -103,9 +105,11 @@ include_once("cabecera.html");
                 <div class="form-group">
                     <label class="col-xs-4 control-label" for="btnAceptarAltaReserva"></label>
                     <div class="col-xs-4">
-                        <input type="submit" id="btnAceptarAltaReserva" name="btnAceptarAltaReserva" class="btn btn-primary" value="Aceptar" />
+                        <input type="submit" id="btnAceptarAltaReserva"
+                            name="btnAceptarAltaReserva" class="btn btn-primary" value="Aceptar" />
                     </div>
                 </div>
+
             </fieldset>
         </form>
     </div>

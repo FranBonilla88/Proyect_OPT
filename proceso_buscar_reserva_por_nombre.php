@@ -3,7 +3,7 @@ require_once("funcionesBD.php");
 $conexion = obtenerConexion();
 
 // Recuperar el nombre buscado desde el formulario
-$nombre = $_POST['name'];
+$nombre = $_GET['name_reservation'];
 
 // Consulta con JOINs para mostrar nombres de usuario, actividad y valoración
 $sql = "SELECT r.id_reservation, 
@@ -15,14 +15,14 @@ $sql = "SELECT r.id_reservation,
                s.value AS assessment_value
         FROM reservation r
         LEFT JOIN assessment s ON r.id_assessment = s.id_assessment
-        WHERE r.name LIKE '%" . $nombre . "%'
+        WHERE r.name LIKE '%$nombre%'
         ORDER BY r.id_reservation ASC;";
 
 // Ejecutar consulta
 $resultado = mysqli_query($conexion, $sql);
 
 // Montar tabla de resultados
-$mensaje = "<h2 class='text-center'>Resultados de la búsqueda</h2>";
+$mensaje  = "<h2 class='text-center'>Resultados de la búsqueda</h2>";
 $mensaje .= "<table class='table table-striped'>";
 $mensaje .= "<thead><tr>
                 <th>ID</th>
@@ -38,7 +38,9 @@ $mensaje .= "<tbody>";
 
 // Recorrer resultados
 while ($fila = mysqli_fetch_assoc($resultado)) {
-    $mensaje .= "<tr><td>" . $fila['id_reservation'] . "</td>";
+
+    $mensaje .= "<tr>";
+    $mensaje .= "<td>" . $fila['id_reservation'] . "</td>";
     $mensaje .= "<td>" . $fila['name_reservation'] . "</td>";
     $mensaje .= "<td>" . $fila['id_user'] . "</td>";
     $mensaje .= "<td>" . $fila['id_activity'] . "</td>";
@@ -46,17 +48,24 @@ while ($fila = mysqli_fetch_assoc($resultado)) {
     $mensaje .= "<td>" . ($fila['is_active'] ? 'Sí' : 'No') . "</td>";
     $mensaje .= "<td>" . ($fila['assessment_value'] ? ucfirst($fila['assessment_value']) : '-') . "</td>";
 
-    // Botones de acción (igual que en listado_reservas)
+    // Botones de acción
     $mensaje .= "<td>
                     <form class='d-inline me-1' action='editar_reserva.php' method='post'>
                         <input type='hidden' name='reserva' value='" . htmlspecialchars(json_encode($fila), ENT_QUOTES) . "' />
-                        <button name='Editar' class='btn btn-primary'><i class='bi bi-pencil-square'></i></button>
+                        <button name='Editar' class='btn btn-primary'>
+                            <i class='bi bi-pencil-square'></i>
+                        </button>
                     </form>
+
                     <form class='d-inline' action='proceso_borrar_reserva.php' method='post'>
                         <input type='hidden' name='id_reservation' value='" . $fila['id_reservation'] . "' />
-                        <button name='Borrar' class='btn btn-danger'><i class='bi bi-trash'></i></button>
+                        <button name='Borrar' class='btn btn-danger'>
+                            <i class='bi bi-trash'></i>
+                        </button>
                     </form>
-                 </td></tr>";
+                </td>";
+
+    $mensaje .= "</tr>";
 }
 
 $mensaje .= "</tbody></table>";
@@ -64,5 +73,5 @@ $mensaje .= "</tbody></table>";
 // Insertar cabecera
 include_once("cabecera.html");
 
-// Mostrar
+// Mostrar resultados
 echo $mensaje;

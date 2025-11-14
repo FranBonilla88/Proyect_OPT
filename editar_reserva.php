@@ -93,9 +93,9 @@ include_once("cabecera.html");
 
                 <!-- Valoración -->
                 <div class="form-group">
-                    <label class="col-xs-4 control-label" for="id_assessment">Valoración</label>
+                    <label class="col-xs-4 control-label" for="lstAssessment">Valoración</label>
                     <div class="col-xs-4">
-                        <select id="id_assessment" name="id_assessment" class="form-control" required>
+                        <select id="lstAssessment" name="lstAssessment" class="form-control" required>
                             <option value="">Seleccione una valoración</option>
                             <?php echo $optionsAssessment; ?>
                         </select>

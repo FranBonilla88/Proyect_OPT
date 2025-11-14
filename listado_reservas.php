@@ -2,19 +2,20 @@
 require_once("funcionesBD.php");
 $conexion = obtenerConexion();
 
-// Consulta con JOIN para traer el texto del assessment
+// Consulta con JOIN para traer ID y texto del assessment
 $sql = "SELECT r.id_reservation, 
                r.name AS name_reservation, 
                r.id_user, 
                r.id_activity, 
                r.reservation_date, 
                r.is_active, 
+               r.id_assessment,             
                s.value AS assessment_value
         FROM reservation r
         LEFT JOIN assessment s ON r.id_assessment = s.id_assessment
         ORDER BY r.id_reservation ASC;";
 
-// Ejecutar consulta
+// Ejecutamos la consulta
 $resultado = mysqli_query($conexion, $sql);
 
 // Montamos la tabla
@@ -34,6 +35,7 @@ $mensaje .= "<tbody>";
 
 // Recorremos las filas
 while ($fila = mysqli_fetch_assoc($resultado)) {
+
     $mensaje .= "<tr><td>" . $fila['id_reservation'] . "</td>";
     $mensaje .= "<td>" . $fila['name_reservation'] . "</td>";
     $mensaje .= "<td>" . $fila['id_user'] . "</td>";
