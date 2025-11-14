@@ -34,20 +34,22 @@ CREATE TABLE activity (
   activity_day DATETIME NOT NULL,
   duration DECIMAL(10,0) NOT NULL,
   available TINYINT(1) NOT NULL,
-  PRIMARY KEY (id_activity)
+  id_trainer int NOT NULL,
+  PRIMARY KEY (id_activity),
+  CONSTRAINT FK_activity_user FOREIGN KEY (id_trainer) REFERENCES user(id_user) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 INSERT INTO activity VALUES
-(1,'Yoga','Sesión de relajación y estiramientos.','2025-01-10 10:00:00',2,1),
-(2,'Spinning','Entrenamiento de alta intensidad en bicicleta.','2025-01-11 18:00:00',1,1),
-(3,'CrossFit','Rutina de fuerza y resistencia.','2025-01-12 19:00:00',1,1),
-(4,'Pilates','Fortalecimiento del core y mejora de la postura.','2025-01-13 09:00:00',1,1),
-(5,'Zumba','Clase de baile y cardio con ritmo latino.','2025-01-14 17:00:00',1,1),
-(6,'Boxeo','Entrenamiento de técnica y resistencia física.','2025-01-15 20:00:00',2,1),
-(7,'Body Pump','Sesión de levantamiento de pesas con música.','2025-01-16 19:30:00',1,1),
-(8,'Natación','Entrenamiento en piscina climatizada.','2025-01-17 08:30:00',1,1),
-(9,'Cardio HIIT','Entrenamiento por intervalos de alta intensidad.','2025-01-18 18:30:00',1,1),
-(10,'Funcional','Sesión de ejercicios de cuerpo completo.','2025-01-19 10:30:00',1,1);
+(1,'Yoga','Sesión de relajación y estiramientos.','2025-01-10 10:00:00',2,1,1),
+(2,'Spinning','Entrenamiento de alta intensidad en bicicleta.','2025-01-11 18:00:00',1,1,1),
+(3,'CrossFit','Rutina de fuerza y resistencia.','2025-01-12 19:00:00',1,1,1),
+(4,'Pilates','Fortalecimiento del core y mejora de la postura.','2025-01-13 09:00:00',1,1,1),
+(5,'Zumba','Clase de baile y cardio con ritmo latino.','2025-01-14 17:00:00',1,1,2),
+(6,'Boxeo','Entrenamiento de técnica y resistencia física.','2025-01-15 20:00:00',2,1,2),
+(7,'Body Pump','Sesión de levantamiento de pesas con música.','2025-01-16 19:30:00',1,1,2),
+(8,'Natación','Entrenamiento en piscina climatizada.','2025-01-17 08:30:00',1,1,2),
+(9,'Cardio HIIT','Entrenamiento por intervalos de alta intensidad.','2025-01-18 18:30:00',1,1,2),
+(10,'Funcional','Sesión de ejercicios de cuerpo completo.','2025-01-19 10:30:00',1,1,2);
 
 -- Tabla ASSESSMENT
 CREATE TABLE assessment (
