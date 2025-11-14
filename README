@@ -1,3 +1,25 @@
 Desplegable Usuario: Miguel Rodriguez Casado
 Desplegable Actividad: Javier Coronel Ortiz
 Desplegable Reserva: Francisco Javier Bonilla Varo
+
+Enlace a GitHub: 
+https://github.com/FranBonilla88/Proyect_OPT
+
+Enlace al alojamiento web: 
+https://fitforge.infinityfree.me/
+
+Datos para la conexion de base de datos Alojamiento Web:
+servidor: sql311.infinityfree.com
+usuario: if0_40421177
+contraseña: mgY7dEEZbtu6j 
+nombre de la base de datos: if0_40421177_gimnasio 
+puerto: 3306
+
+Datos para la conexion de base de datos PhpMyAdmin:
+servidor: db
+usuario: root
+contraseña: test
+nombre de la base de datos: gimnasio
+puerto: 3306
+
+
