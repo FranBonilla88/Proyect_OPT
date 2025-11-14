@@ -40,24 +40,25 @@ CREATE TABLE `activity` (
   `description` text NOT NULL,
   `activity_day` datetime NOT NULL,
   `duration` decimal(10,0) NOT NULL,
-  `available` tinyint(1) NOT NULL
+  `available` tinyint(1) NOT NULL,
+  `id_trainer` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `activity`
 --
 
-INSERT INTO `activity` (`id_activity`, `name`, `description`, `activity_day`, `duration`, `available`) VALUES
-(1, 'Yoga', 'Sesión de relajación y estiramientos.', '2025-01-10 10:00:00', 2, 1),
-(2, 'Spinning', 'Entrenamiento de alta intensidad en bicicleta.', '2025-01-11 18:00:00', 1, 1),
-(3, 'CrossFit', 'Rutina de fuerza y resistencia.', '2025-01-12 19:00:00', 1, 1),
-(4, 'Pilates', 'Fortalecimiento del core y mejora de la postura.', '2025-01-13 09:00:00', 1, 1),
-(5, 'Zumba', 'Clase de baile y cardio con ritmo latino.', '2025-01-14 17:00:00', 1, 1),
-(6, 'Boxeo', 'Entrenamiento de técnica y resistencia física.', '2025-01-15 20:00:00', 2, 1),
-(7, 'Body Pump', 'Sesión de levantamiento de pesas con música.', '2025-01-16 19:30:00', 1, 1),
-(8, 'Natación', 'Entrenamiento en piscina climatizada.', '2025-01-17 08:30:00', 1, 1),
-(9, 'Cardio HIIT', 'Entrenamiento por intervalos de alta intensidad.', '2025-01-18 18:30:00', 1, 1),
-(10, 'Funcional', 'Sesión de ejercicios de cuerpo completo.', '2025-01-19 10:30:00', 1, 1);
+INSERT INTO `activity` (`id_activity`, `name`, `description`, `activity_day`, `duration`, `available`, `id_trainer`) VALUES
+(1, 'Yoga', 'Sesión de relajación y estiramientos.', '2025-01-10 10:00:00', 2, 1, 1),
+(2, 'Spinning', 'Entrenamiento de alta intensidad en bicicleta.', '2025-01-11 18:00:00', 1, 1, 1),
+(3, 'CrossFit', 'Rutina de fuerza y resistencia.', '2025-01-12 19:00:00', 1, 1, 1),
+(4, 'Pilates', 'Fortalecimiento del core y mejora de la postura.', '2025-01-13 09:00:00', 1, 1, 1),
+(5, 'Zumba', 'Clase de baile y cardio con ritmo latino.', '2025-01-14 17:00:00', 1, 1, 1),
+(6, 'Boxeo', 'Entrenamiento de técnica y resistencia física.', '2025-01-15 20:00:00', 2, 1, 1),
+(7, 'Body Pump', 'Sesión de levantamiento de pesas con música.', '2025-01-16 19:30:00', 1, 1, 1),
+(8, 'Natación', 'Entrenamiento en piscina climatizada.', '2025-01-17 08:30:00', 1, 1, 1),
+(9, 'Cardio HIIT', 'Entrenamiento por intervalos de alta intensidad.', '2025-01-18 18:30:00', 1, 1, 1),
+(10, 'Funcional', 'Sesión de ejercicios de cuerpo completo.', '2025-01-19 10:30:00', 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -214,6 +215,14 @@ ALTER TABLE `reservation`
   ADD CONSTRAINT `FK_reservation_activity` FOREIGN KEY (`id_activity`) REFERENCES `activity` (`id_activity`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `FK_reservation_assessment` FOREIGN KEY (`id_assessment`) REFERENCES `assessment` (`id_assessment`),
   ADD CONSTRAINT `FK_reservation_user` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE;
+COMMIT;
+
+--
+-- Filtros para la tabla `activity`
+--
+
+ALTER TABLE `activity`
+  ADD CONSTRAINT `FK_activity_user` FOREIGN KEY (`id_trainer`) REFERENCES `user` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
