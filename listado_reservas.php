@@ -2,14 +2,22 @@
 require_once("funcionesBD.php");
 $conexion = obtenerConexion();
 
-$sql = "SELECT id_reservation, name AS name_reservation, id_user, id_activity, reservation_date, is_active, status
-        FROM reservation
-        ORDER BY id_reservation ASC;";
+// Consulta con JOIN para traer el texto del assessment
+$sql = "SELECT r.id_reservation, 
+               r.name AS name_reservation, 
+               r.id_user, 
+               r.id_activity, 
+               r.reservation_date, 
+               r.is_active, 
+               s.value AS assessment_value
+        FROM reservation r
+        LEFT JOIN assessment s ON r.id_assessment = s.id_assessment
+        ORDER BY r.id_reservation ASC;";
 
 // Ejecutar consulta
 $resultado = mysqli_query($conexion, $sql);
 
-// Montar tabla
+// Montamos la tabla
 $mensaje = "<h2 class='text-center'>Listado de Reservas</h2>";
 $mensaje .= "<table class='table table-striped'>";
 $mensaje .= "<thead><tr>
@@ -18,13 +26,13 @@ $mensaje .= "<thead><tr>
                 <th>Id Usuario</th>
                 <th>Id Actividad</th>
                 <th>Fecha Reserva</th>
-                <th>¿Esta activa?</th>
-                <th>Estado</th>
+                <th>¿Está activa?</th>
+                <th>Valoración</th>
                 <th>Acciones</th>
                 </tr></thead>";
 $mensaje .= "<tbody>";
 
-// Recorrer filas
+// Recorremos las filas
 while ($fila = mysqli_fetch_assoc($resultado)) {
     $mensaje .= "<tr><td>" . $fila['id_reservation'] . "</td>";
     $mensaje .= "<td>" . $fila['name_reservation'] . "</td>";
@@ -32,7 +40,7 @@ while ($fila = mysqli_fetch_assoc($resultado)) {
     $mensaje .= "<td>" . $fila['id_activity'] . "</td>";
     $mensaje .= "<td>" . date("d/m/Y H:i", strtotime($fila['reservation_date'])) . "</td>";
     $mensaje .= "<td>" . ($fila['is_active'] ? 'Sí' : 'No') . "</td>";
-    $mensaje .= "<td>" . ucfirst($fila['status']) . "</td>";
+    $mensaje .= "<td>" . ($fila['assessment_value'] ? ucfirst($fila['assessment_value']) : '-') . "</td>";
 
     // Acciones
     $mensaje .= "<td>
@@ -43,9 +51,8 @@ while ($fila = mysqli_fetch_assoc($resultado)) {
                     <form class='d-inline' action='proceso_borrar_reserva.php' method='post'>
                         <input type='hidden' name='id_reservation' value='" . $fila['id_reservation'] . "' />
                         <button name='Borrar' class='btn btn-danger'><i class='bi bi-trash'></i></button>
-                    </form>";
-
-    $mensaje .= "</td></tr>";
+                    </form>
+                 </td></tr>";
 }
 
 $mensaje .= "</tbody></table>";

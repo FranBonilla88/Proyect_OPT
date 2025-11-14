@@ -2,55 +2,67 @@
 require_once("funcionesBD.php");
 $conexion = obtenerConexion();
 
-// Recuperar parámetro
-$nombre_reserva = $_GET['name_reservation'];
+// Recuperar el nombre buscado desde el formulario
+$nombre = $_POST['name'];
 
-
-$sql = "SELECT r.id_reservation, r.name AS name_reservation, r.id_user, r.id_activity, r.reservation_date, r.is_active, status
+// Consulta con JOINs para mostrar nombres de usuario, actividad y valoración
+$sql = "SELECT r.id_reservation, 
+               r.name AS name_reservation, 
+               r.id_user, 
+               r.id_activity, 
+               r.reservation_date, 
+               r.is_active, 
+               s.value AS assessment_value
         FROM reservation r
-        WHERE r.name LIKE '%$nombre_reserva%';";
+        LEFT JOIN assessment s ON r.id_assessment = s.id_assessment
+        WHERE r.name LIKE '%" . $nombre . "%'
+        ORDER BY r.id_reservation ASC;";
 
+// Ejecutar consulta
 $resultado = mysqli_query($conexion, $sql);
 
-if (mysqli_num_rows($resultado) > 0) {    // Mostrar tabla de datos, hay datos
-    $mensaje = "<h2 class='text-center'>Reserva Encontrada</h2>";
-    $mensaje .= "<table class='table table-striped'>";
-    $mensaje .= "<thead><tr><th>ID</th><th>Nombre</th><th>Id Usuario</th><th>Id Actividad</th><th>Fecha Reserva</th><th>¿Esta Activa?</th><th>Estado</th><th>Acciones</th></tr></thead>";
-    $mensaje .= "<tbody>";
+// Montar tabla de resultados
+$mensaje = "<h2 class='text-center'>Resultados de la búsqueda</h2>";
+$mensaje .= "<table class='table table-striped'>";
+$mensaje .= "<thead><tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Id Usuario</th>
+                <th>Id Actividad</th>
+                <th>Fecha Reserva</th>
+                <th>¿Está activa?</th>
+                <th>Valoración</th>
+                <th>Acciones</th>
+             </tr></thead>";
+$mensaje .= "<tbody>";
 
+// Recorrer resultados
+while ($fila = mysqli_fetch_assoc($resultado)) {
+    $mensaje .= "<tr><td>" . $fila['id_reservation'] . "</td>";
+    $mensaje .= "<td>" . $fila['name_reservation'] . "</td>";
+    $mensaje .= "<td>" . $fila['id_user'] . "</td>";
+    $mensaje .= "<td>" . $fila['id_activity'] . "</td>";
+    $mensaje .= "<td>" . date("d/m/Y H:i", strtotime($fila['reservation_date'])) . "</td>";
+    $mensaje .= "<td>" . ($fila['is_active'] ? 'Sí' : 'No') . "</td>";
+    $mensaje .= "<td>" . ($fila['assessment_value'] ? ucfirst($fila['assessment_value']) : '-') . "</td>";
 
-    while ($fila = mysqli_fetch_assoc($resultado)) {
-        $mensaje .= "<tr>";
-        $mensaje .= "<td>" . $fila['id_reservation'] . "</td>";
-        $mensaje .= "<td>" . $fila['name_reservation'] . "</td>";
-        $mensaje .= "<td>" . $fila['id_user'] . "</td>";
-        $mensaje .= "<td>" . $fila['id_activity'] . "</td>";
-        $mensaje .= "<td>" . date("d/m/Y H:i", strtotime($fila['reservation_date'])) . "</td>";
-        $mensaje .= "<td>" . ($fila['is_active'] ? 'Sí' : 'No') . "</td>";
-        $mensaje .= "<td>" . ucfirst($fila['status']) . "</td>";
-
-
-        // input hidden para enviar idReserva a borrar
-        $id_reserva = $fila['id_reservation'];
-
-        // Formulario en la celda para procesar borrado del registro
-        $mensaje .= "<td><form action='proceso_borrar_reserva.php' method='post'>
+    // Botones de acción (igual que en listado_reservas)
+    $mensaje .= "<td>
+                    <form class='d-inline me-1' action='editar_reserva.php' method='post'>
+                        <input type='hidden' name='reserva' value='" . htmlspecialchars(json_encode($fila), ENT_QUOTES) . "' />
+                        <button name='Editar' class='btn btn-primary'><i class='bi bi-pencil-square'></i></button>
+                    </form>
+                    <form class='d-inline' action='proceso_borrar_reserva.php' method='post'>
                         <input type='hidden' name='id_reservation' value='" . $fila['id_reservation'] . "' />
-                        <button type='submit' name='btnBorrar' class='btn btn-danger'>
-                            <i class='bi bi-trash'></i>
-                        </button>
-                    </form></td>";
-
-        $mensaje .= "</tr>";
-    }
-
-    $mensaje .= "</tbody></table>";
-} else { // No hay datos
-    $mensaje = "<h2 class='text-center mt-5'>No hay reservas con el nombre $nombre_reserva</h2>";
+                        <button name='Borrar' class='btn btn-danger'><i class='bi bi-trash'></i></button>
+                    </form>
+                 </td></tr>";
 }
 
-// Insertamos cabecera
+$mensaje .= "</tbody></table>";
+
+// Insertar cabecera
 include_once("cabecera.html");
 
-// Mostrar mensaje calculado antes
+// Mostrar
 echo $mensaje;

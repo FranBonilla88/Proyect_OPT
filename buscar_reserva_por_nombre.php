@@ -8,9 +8,9 @@ include_once("cabecera.html");
             <fieldset>
                 <!-- Form Name -->
                 <legend>Buscar una reserva por Nombre</legend>
-                <!-- Text input-->
+                <!-- Nombre de la Reserva-->
                 <div class="form-group">
-                    <label class="col-xs-4 control-label" for="">Nombre de la Reserva</label>
+                    <label class="col-xs-4 control-label" for="name_reservation">Nombre de la Reserva</label>
                     <div class="col-xs-4">
                         <input id="name_reservation" name="name_reservation" placeholder="Nombre de la reserva" class="form-control input-md" type="text">
                     </div>
