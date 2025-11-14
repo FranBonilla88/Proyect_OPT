@@ -90,6 +90,3 @@ include_once("cabecera.html");
         </form>
     </div>
 </div>
-</body>
-
-</html>

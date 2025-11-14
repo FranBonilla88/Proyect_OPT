@@ -1,17 +1,16 @@
 <?php
 require_once("funcionesBD.php");
 
-    $conexion = obtenerConexion();
+$conexion = obtenerConexion();
 
-    $sql = "SELECT id_user, name FROM user;";
+$sql = "SELECT id_user, name FROM user;";
 
-    $resultado = mysqli_query($conexion, $sql);
+$resultado = mysqli_query($conexion, $sql);
 
-    $options = "";
-    while ($fila = mysqli_fetch_assoc($resultado)) {
-        $options .= " <option value='" . $fila["id_user"] . "'>" . $fila["name"] . "</option>";
-        
-    }
+$options = "";
+while ($fila = mysqli_fetch_assoc($resultado)) {
+    $options .= " <option value='" . $fila["id_user"] . "'>" . $fila["name"] . "</option>";
+}
 
 include_once("cabecera.html");
 ?>
@@ -44,7 +43,7 @@ include_once("cabecera.html");
                         <input name="numberDuration" id="numberDuration" class="form-control input-md" type="number">
                     </div>
                 </div>
-                <div >
+                <div>
                     <label class="col-xs-4" for="boolAvalible">¿Esta disponible?</label>
                     <div class="form-switch">
                         <input name="boolAvalible" id="boolAvalible" class="form-check-input input-md" type="checkbox">
@@ -66,8 +65,4 @@ include_once("cabecera.html");
             </fieldset>
         </form>
     </div>
-
-
 </div>
-</body>
-</html>
